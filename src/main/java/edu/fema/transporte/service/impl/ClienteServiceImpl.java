@@ -40,4 +40,9 @@ public class ClienteServiceImpl implements ClienteService {
     public void updateCliente(ClienteDto clienteDto) {
 
     }
+
+    @Override
+    public void deleteCliente(Long id) {
+         clienteRepository.deleteById(id);
+    }
 }
