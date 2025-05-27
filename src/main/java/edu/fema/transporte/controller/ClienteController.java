@@ -44,4 +44,18 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
+    @GetMapping("/clientes/edit/{id}")
+    public String editCliente(@PathVariable ("id") Long id, Model model){
+        ClienteDto clienteDto = clienteService.getClienteById(id);
+        model.addAttribute("cliente", clienteDto);
+        return "clientes/editCliente";
+    }
+
+    @PostMapping("/clientes/{id}")
+    public String updateCliente(@PathVariable("id")  Long id, @ModelAttribute("cliente") ClienteDto clienteDto){
+        clienteDto.setId(id);
+        clienteService.updateCliente(clienteDto);
+        return "redirect:/clientes?updated";
+    }
+
 }
