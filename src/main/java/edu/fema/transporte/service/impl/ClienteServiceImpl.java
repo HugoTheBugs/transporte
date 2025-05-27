@@ -27,7 +27,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void createCliente(ClienteDto clienteDto) {
-
+        Cliente cliente = modelMapper.map(clienteDto, Cliente.class);
+        clienteRepository.save(cliente);
     }
 
     @Override
