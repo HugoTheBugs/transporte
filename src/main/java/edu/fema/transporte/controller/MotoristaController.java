@@ -1,6 +1,4 @@
 package edu.fema.transporte.controller;
-
-import edu.fema.transporte.dto.MotoristaDto;
 import edu.fema.transporte.dto.MotoristaDto;
 import edu.fema.transporte.service.MotoristaService;
 import lombok.AllArgsConstructor;
