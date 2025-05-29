@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Abastecimento</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .header-section {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+<div th:insert="~{common/header :: header}"></div>
+<div class="container mt-4">
+  <div class="header-section">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h2 class="mb-0">Cadastrar Abastecimento</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row col-8 offset-md-2">
+    <form method="post" th:action="@{/abastecimentos}" th:object="${abastecimento}">
+      <div class="mb-3">
+        <label for="data" class="form-label">Data</label>
+        <input type="date" class="form-control" id="data" th:field="*{data}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="veiculoId" class="form-label">Veículo</label>
+        <select class="form-select" id="veiculoId" th:field="*{veiculoId}" required>
+          <option value="">Selecione o veículo</option>
+          <option th:each="veiculo : ${veiculos}"
+                  th:value="${veiculo.id}"
+                  th:text="${veiculo.placa}">
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="motoristaId" class="form-label">Motorista</label>
+        <select class="form-select" id="motoristaId" th:field="*{motoristaId}" required>
+          <option value="">Selecione o motorista</option>
+          <option th:each="motorista : ${motoristas}"
+                  th:value="${motorista.id}"
+                  th:text="${motorista.nome}">
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="postoId" class="form-label">Posto</label>
+        <select class="form-select" id="postoId" th:field="*{postoId}" required>
+          <option value="">Selecione o posto</option>
+          <option th:each="posto : ${postos}"
+                  th:value="${posto.id}"
+                  th:text="${posto.nome}">
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="combustivelId" class="form-label">Combustível</label>
+        <select class="form-select" id="combustivelId" th:field="*{combustivelId}" required>
+          <option value="">Selecione o combustível</option>
+          <option th:each="combustivel : ${combustiveis}"
+                  th:value="${combustivel.id}"
+                  th:text="${combustivel.nome}">
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="kmAtual" class="form-label">KM Atual</label>
+        <input type="number" step="0.01" class="form-control" id="kmAtual" th:field="*{kmAtual}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="litros" class="form-label">Litros</label>
+        <input type="number" step="0.001" class="form-control" id="litros" th:field="*{litros}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="valorTotal" class="form-label">Valor Total (R$)</label>
+        <input type="number" step="0.01" class="form-control" id="valorTotal" th:field="*{valorTotal}" required>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a th:href="@{/abastecimentos}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html>
