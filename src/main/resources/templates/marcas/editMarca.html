@@ -30,8 +30,14 @@
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" id="nome" th:field="*{nome}">
       </div>
-      <button type="submit" class="btn btn-primary">Atualizar</button>
-      <a th:href="@{/marcas}" class="btn btn-secondary ms-2">Cancelar</a>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-save"></i> Atualizar
+        </button>
+        <a th:href="@{/marcas}" class="btn btn-secondary">
+          <i class="bi bi-x-circle"></i> Cancelar
+        </a>
+      </div>
     </form>
   </div>
 </div>
