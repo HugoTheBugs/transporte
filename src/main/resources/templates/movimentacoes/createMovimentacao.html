@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Movimentação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{common/header :: header}"></div>
+<div class="container mt-4">
+    <div class="header-section">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h2 class="mb-0">Cadastrar Movimentação</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-8 offset-md-2">
+        <form method="post" th:action="@{/movimentacoes}" th:object="${movimentacao}">
+            <div class="mb-3">
+                <label for="data" class="form-label">Data</label>
+                <input type="date" class="form-control" id="data" th:field="*{data}" required>
+            </div>
+            <div class="mb-3">
+                <label for="veiculoId" class="form-label">Veículo</label>
+                <select class="form-select" id="veiculoId" th:field="*{veiculoId}" required>
+                    <option value="">Selecione o veículo</option>
+                    <option th:each="veiculo : ${veiculos}"
+                            th:value="${veiculo.id}"
+                            th:text="${veiculo.placa}">
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="motoristaId" class="form-label">Motorista</label>
+                <select class="form-select" id="motoristaId" th:field="*{motoristaId}" required>
+                    <option value="">Selecione o motorista</option>
+                    <option th:each="motorista : ${motoristas}"
+                            th:value="${motorista.id}"
+                            th:text="${motorista.nome}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="itinerarioId" class="form-label">Itinerário</label>
+                <select class="form-select" id="itinerarioId" th:field="*{itinerarioId}" required>
+                    <option value="">Selecione o itinerário</option>
+                    <option th:each="itinerario : ${itinerarios}"
+                            th:value="${itinerario.id}"
+                            th:text="${itinerario.descricao}">
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="kmInicial" class="form-label">KM Inicial</label>
+                <input type="number" step="0.01" class="form-control" id="kmInicial" th:field="*{kmInicial}" required>
+            </div>
+            <div class="mb-3">
+                <label for="kmFinal" class="form-label">KM Final</label>
+                <input type="number" step="0.01" class="form-control" id="kmFinal" th:field="*{kmFinal}" required>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a th:href="@{/movimentacoes}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html>
