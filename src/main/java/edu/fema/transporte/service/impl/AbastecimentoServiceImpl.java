@@ -103,13 +103,11 @@ public class AbastecimentoServiceImpl implements AbastecimentoService {
         Abastecimento existingAbastecimento = abastecimentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Abastecimento não encontrado!"));
 
-        // Atualiza campos básicos
         existingAbastecimento.setData(abastecimentoDto.getData());
         existingAbastecimento.setKmAtual(abastecimentoDto.getKmAtual());
         existingAbastecimento.setLitros(abastecimentoDto.getLitros());
         existingAbastecimento.setValorTotal(abastecimentoDto.getValorTotal());
 
-        // Atualiza relacionamentos se necessário
         if (!existingAbastecimento.getPosto().getId().equals(abastecimentoDto.getPostoId())) {
             Posto posto = postoRepository.findById(abastecimentoDto.getPostoId())
                     .orElseThrow(() -> new RuntimeException("Posto não encontrado!"));
