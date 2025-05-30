@@ -9,5 +9,6 @@ public class PageController {
     @GetMapping("/index")
     public String showIndexPage(){
         return "index";
+
     }
 }

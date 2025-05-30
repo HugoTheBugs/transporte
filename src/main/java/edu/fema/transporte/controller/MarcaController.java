@@ -2,6 +2,7 @@ package edu.fema.transporte.controller;
 import edu.fema.transporte.dto.MarcaDto;
 import edu.fema.transporte.service.MarcaService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class MarcaController {
 
     private MarcaService marcaService;
 
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','USUARIO')")
     @GetMapping("/marcas")
     public String getAllMarcas(Model model){
         List<MarcaDto> marcas = marcaService.getAllMarcas();
@@ -24,12 +26,14 @@ public class MarcaController {
         return "marcas/marcaList";
     }
 
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @PostMapping("/marcas")
     public String saveMarca(@ModelAttribute("marca") MarcaDto marcaDto, Model model){
         marcaService.createMarca(marcaDto);
         return "redirect:/marcas?success";
     }
 
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','USUARIO')")
     @GetMapping("/createMarca")
     public String createMarcaForm(Model model){
         MarcaDto marcaDto = new MarcaDto();
@@ -37,12 +41,14 @@ public class MarcaController {
         return "marcas/createMarca.html";
     }
 
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @GetMapping("/marcas/delete/{id}")
     public String deleteMarca(@PathVariable ("id") Long id){
         marcaService.deleteMarca(id);
         return "redirect:/marcas";
     }
 
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','USUARIO')")
     @GetMapping("/marcas/edit/{id}")
     public String editMarca(@PathVariable ("id") Long id, Model model){
         MarcaDto marcaDto = marcaService.getMarcaById(id);
@@ -50,6 +56,7 @@ public class MarcaController {
         return "marcas/editMarca";
     }
 
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @PostMapping("/marcas/{id}")
     public String updateMarca(@PathVariable("id")  Long id, @ModelAttribute("marca") MarcaDto marcaDto){
         marcaDto.setId(id);
