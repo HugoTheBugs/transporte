@@ -10,16 +10,23 @@
     <div class="navbar-nav me-auto">
       <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Cadastro
+          Tabelas
         </a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" th:href="@{/clientes}">Cliente</a></li>
-          <li><a class="dropdown-item" th:href="@{/combustiveis}">Combustível</a></li>
-          <li><a class="dropdown-item" th:href="@{/itinerarios}">Itinerário</a></li>
-          <li><a class="dropdown-item" th:href="@{/marcas}">Marca</a></li>
-          <li><a class="dropdown-item" th:href="@{/motoristas}">Motorista</a></li>
-          <li><a class="dropdown-item" th:href="@{/postos}">Posto</a></li>
-          <li><a class="dropdown-item" th:href="@{/veiculos}">Veículo</a></li>
+          <li><a class="dropdown-item" th:href="@{/createCliente}">Cliente</a></li>
+          <li><a class="dropdown-item" th:href="@{/createCombustivel}">Combustível</a></li>
+          <li><a class="dropdown-item" th:href="@{/createMarca}">Marca</a></li>
+          <li><a class="dropdown-item" th:href="@{/createPosto}">Posto</a></li>
+        </ul>
+      </div>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Estruturas
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" th:href="@{/createItinerario}">Itinerário</a></li>
+          <li><a class="dropdown-item" th:href="@{/createMotorista}">Motorista</a></li>
+          <li><a class="dropdown-item" th:href="@{/veiculos/create}">Veículo</a></li>
         </ul>
       </div>
       <div class="nav-item dropdown">
@@ -27,21 +34,28 @@
           Lançamentos
         </a>
         <ul class="dropdown-menu">
+          <li><a class="dropdown-item" th:href="@{/abastecimentos/create}">Abastecimento</a></li>
+          <li><a class="dropdown-item" th:href="@{/movimentacoes/create}">Movimentação</a></li>
+        </ul>
+      </div>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Consultas
+        </a>
+        <ul class="dropdown-menu">
           <li><a class="dropdown-item" th:href="@{/abastecimentos}">Abastecimentos</a></li>
+          <li><a class="dropdown-item" th:href="@{/clientes}">Clientes</a></li>
+          <li><a class="dropdown-item" th:href="@{/combustiveis}">Combustíveis</a></li>
+          <li><a class="dropdown-item" th:href="@{/itinerarios}">Itinerários</a></li>
+          <li><a class="dropdown-item" th:href="@{/marcas}">Marcas</a></li>
+          <li><a class="dropdown-item" th:href="@{/motoristas}">Motoristas</a></li>
           <li><a class="dropdown-item" th:href="@{/movimentacoes}">Movimentações</a></li>
+          <li><a class="dropdown-item" th:href="@{/postos}">Postos</a></li>
+          <li><a class="dropdown-item" th:href="@{/veiculos}">Veículos</a></li>
         </ul>
       </div>
       <a class="nav-link" th:href="@{/relatorios}">Relatórios</a>
     </div>
-    <!--<div class="navbar-nav ms-auto">
-      <a class="nav-link text-primary" th:href="@{/registrar}">Registrar</a>
-      <a class="nav-link text-success" th:href="@{/login}">Login</a>
-    </div> -->
-<!--    <div class="d_flex">-->
-<!--      <a class="btn btn-outline-primary" th:href="@{/register}">Registrar</a>-->
-
-<!--      <a class="btn btn-outline-success" th:href="@{/register}">Logar</a>-->
-<!--    </div>-->
   </nav>
 </header>
 <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
