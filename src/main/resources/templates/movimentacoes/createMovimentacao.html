@@ -34,7 +34,7 @@
             <div class="mb-3">
                 <label for="veiculoId" class="form-label">Veículo</label>
                 <select class="form-select" id="veiculoId" th:field="*{veiculoId}" required>
-                    <option value="">Selecione o veículo</option>
+                    <option value="">SELECIONE O VEÍCULO</option>
                     <option th:each="veiculo : ${veiculos}"
                             th:value="${veiculo.id}"
                             th:text="${veiculo.placa}">
@@ -44,7 +44,7 @@
             <div class="mb-3">
                 <label for="motoristaId" class="form-label">Motorista</label>
                 <select class="form-select" id="motoristaId" th:field="*{motoristaId}" required>
-                    <option value="">Selecione o motorista</option>
+                    <option value="">SELECIONE O MOTORISTA</option>
                     <option th:each="motorista : ${motoristas}"
                             th:value="${motorista.id}"
                             th:text="${motorista.nome}">
@@ -55,7 +55,7 @@
             <div class="mb-3">
                 <label for="itinerarioId" class="form-label">Itinerário</label>
                 <select class="form-select" id="itinerarioId" th:field="*{itinerarioId}" required>
-                    <option value="">Selecione o itinerário</option>
+                    <option value="">SELECIONE O ITINERÁRIO</option>
                     <option th:each="itinerario : ${itinerarios}"
                             th:value="${itinerario.id}"
                             th:text="${itinerario.descricao}">

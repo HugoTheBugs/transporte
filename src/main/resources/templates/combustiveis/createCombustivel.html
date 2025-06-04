@@ -28,7 +28,7 @@
     <form method="post" role="form" th:action="@{/combustiveis}" th:object="${combustivel}">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" th:field="*{nome}">
+        <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="GASOLINA" required>
       </div>
       <button type="submit" class="btn btn-primary">Criar</button>
       <a th:href="@{/combustiveis}" class="btn btn-secondary ms-2">Cancelar</a>

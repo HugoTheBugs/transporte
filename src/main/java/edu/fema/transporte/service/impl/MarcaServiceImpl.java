@@ -24,6 +24,7 @@ public class MarcaServiceImpl implements MarcaService {
 
     @Override
     public void createMarca(MarcaDto marcaDto) {
+        marcaDto.setNome(marcaDto.getNome().toUpperCase());
         Marca marca = modelMapper.map(marcaDto, Marca.class);
         marcaRepository.save(marca);
     }
@@ -37,6 +38,7 @@ public class MarcaServiceImpl implements MarcaService {
 
     @Override
     public void updateMarca(MarcaDto marcaDto) {
+        marcaDto.setNome(marcaDto.getNome().toUpperCase());
         marcaRepository.save(modelMapper.map(marcaDto, Marca.class));
     }
 

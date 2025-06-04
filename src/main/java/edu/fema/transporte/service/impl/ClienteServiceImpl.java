@@ -27,6 +27,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void createCliente(ClienteDto clienteDto) {
+        clienteDto.setNome(clienteDto.getNome().toUpperCase());
+        clienteDto.setEndereco(clienteDto.getEndereco().toUpperCase());
+
         Cliente cliente = modelMapper.map(clienteDto, Cliente.class);
         clienteRepository.save(cliente);
     }
@@ -40,6 +43,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void updateCliente(ClienteDto clienteDto) {
+        clienteDto.setNome(clienteDto.getNome().toUpperCase());
+        clienteDto.setEndereco(clienteDto.getEndereco().toUpperCase());
         clienteRepository.save(modelMapper.map(clienteDto, Cliente.class));
     }
 

@@ -28,15 +28,15 @@
     <form method="post" role="form" th:action="@{/postos}" th:object="${posto}">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" th:field="*{nome}">
+        <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="POSTO SÃO JOSÉ" required>
       </div>
       <div class="mb-3">
         <label for="cidade" class="form-label">Cidade</label>
-        <input type="text" class="form-control" id="cidade" th:field="*{cidade}">
+        <input type="text" class="form-control" id="cidade" th:field="*{cidade}" placeholder="ASSIS" required>
       </div>
       <div class="mb-3">
         <label for="estado" class="form-label">Estado</label>
-        <select class="form-control" id="estado" th:field="*{estado}">
+        <select class="form-control" id="estado" th:field="*{estado}" required>
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
           <option value="AP">Amapá</option>

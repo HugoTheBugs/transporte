@@ -28,15 +28,15 @@
     <form method="post" role="form" th:action="@{/motoristas}" th:object="${motorista}">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" th:field="*{nome}">
+        <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="JOSÉ DA SILVA" required>
       </div>
       <div class="mb-3">
         <label for="cnh" class="form-label">CNH</label>
-        <input type="text" class="form-control" id="cnh" th:field="*{cnh}">
+        <input type="text" class="form-control" id="cnh" th:field="*{cnh}" placeholder="01234567890" required>
       </div>
       <div class="mb-3">
         <label for="cnhCategoria" class="form-label">CNH Categoria</label>
-        <select class="form-control" id="cnhCategoria" th:field="*{cnhCategoria}">
+        <select class="form-control" id="cnhCategoria" th:field="*{cnhCategoria}" required>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
@@ -46,17 +46,17 @@
       </div>
       <div class="mb-3">
         <label for="cnhVencimento" class="form-label">CNH Vencimento</label>
-        <input type="date" class="form-control" id="cnhVencimento" th:field="*{cnhVencimento}">
+        <input type="date" class="form-control" id="cnhVencimento" th:field="*{cnhVencimento}" required>
       </div>
       <div class="mb-3">
         <label for="telefone" class="form-label">Contato</label>
-        <input type="text" class="form-control" id="telefone" th:field="*{telefone}">
+        <input type="text" class="form-control" id="telefone" th:field="*{telefone}" placeholder="18123456789" required>
       </div>
       <div class="mb-3">
         <label for="status" class="form-label">Status</label>
         <select class="form-control" id="status" th:field="*{status}">
-          <option value="Ativo">Ativo</option>
-          <option value="Inativo">Inativo</option>
+          <option value="ATIVO">ATIVO</option>
+          <option value="INATIVO">INATIVO</option>
         </select>
       </div>
       <button type="submit" class="btn btn-primary">Criar</button>

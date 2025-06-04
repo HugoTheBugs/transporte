@@ -67,7 +67,8 @@ public class VeiculoServiceImpl implements VeiculoService {
                 .orElseThrow(() -> new RuntimeException("Marca não encontrada"));
         Combustivel combustivel = combustivelRepository.findById(veiculoDto.getCombustivelId())
                 .orElseThrow(() -> new RuntimeException("Combustívell não encontrado"));
-
+        veiculoDto.setPlaca(veiculoDto.getPlaca().toUpperCase());
+        veiculoDto.setModelo(veiculoDto.getModelo().toUpperCase());
         Veiculo veiculo = modelMapper.map(veiculoDto, Veiculo.class);
         veiculo.setMarca(marca);
         veiculo.setCombustivel(combustivel);
@@ -87,8 +88,8 @@ public class VeiculoServiceImpl implements VeiculoService {
         Combustivel combustivel = combustivelRepository.findById(veiculoDto.getCombustivelId())
                 .orElseThrow(() -> new RuntimeException("Combustível não encontrado!"));
 
-        existingVeiculo.setPlaca(veiculoDto.getPlaca());
-        existingVeiculo.setModelo(veiculoDto.getModelo());
+        existingVeiculo.setPlaca(veiculoDto.getPlaca().toUpperCase());
+        existingVeiculo.setModelo(veiculoDto.getModelo().toUpperCase());
         existingVeiculo.setAno(veiculoDto.getAno());
         existingVeiculo.setTanqueCapacidade(veiculoDto.getTanqueCapacidade());
         existingVeiculo.setCategoria(veiculoDto.getCategoria());

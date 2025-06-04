@@ -53,7 +53,7 @@ public class ItinerarioServiceImpl implements ItinerarioService {
     public ItinerarioDto createItinerario(ItinerarioDto itinerarioDto) {
         Cliente cliente = clienteRepository.findById(itinerarioDto.getClienteId())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
-
+        itinerarioDto.setDescricao(itinerarioDto.getDescricao().toUpperCase());
         Itinerario itinerario = modelMapper.map(itinerarioDto, Itinerario.class);
         itinerario.setCliente(cliente);
 
@@ -68,7 +68,7 @@ public class ItinerarioServiceImpl implements ItinerarioService {
         Itinerario existingItinerario = itinerarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Itinerário não encontrado!"));
 
-        existingItinerario.setDescricao(itinerarioDto.getDescricao());
+        existingItinerario.setDescricao(itinerarioDto.getDescricao().toUpperCase());
 
         if (!existingItinerario.getCliente().getId().equals(itinerarioDto.getClienteId())) {
             Cliente novoCliente = clienteRepository.findById(itinerarioDto.getClienteId())

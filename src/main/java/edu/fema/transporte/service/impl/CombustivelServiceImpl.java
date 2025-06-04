@@ -24,6 +24,7 @@ public class CombustivelServiceImpl implements CombustivelService {
 
     @Override
     public void createCombustivel(CombustivelDto combustivelDto) {
+        combustivelDto.setNome(combustivelDto.getNome().toUpperCase());
         Combustivel combustivel = modelMapper.map(combustivelDto, Combustivel.class);
         combustivelRepository.save(combustivel);
     }
@@ -37,6 +38,7 @@ public class CombustivelServiceImpl implements CombustivelService {
 
     @Override
     public void updateCombustivel(CombustivelDto combustivelDto) {
+        combustivelDto.setNome(combustivelDto.getNome().toUpperCase());
         combustivelRepository.save(modelMapper.map(combustivelDto, Combustivel.class));
     }
 

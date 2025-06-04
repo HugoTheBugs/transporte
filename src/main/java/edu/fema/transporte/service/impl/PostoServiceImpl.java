@@ -26,6 +26,8 @@ public class PostoServiceImpl implements PostoService {
 
     @Override
     public void createPosto(PostoDto postoDto) {
+        postoDto.setNome(postoDto.getNome().toUpperCase());
+        postoDto.setCidade(postoDto.getCidade().toUpperCase());
         Posto posto = modelMapper.map(postoDto, Posto.class);
         postoRepository.save(posto);
 
@@ -40,6 +42,8 @@ public class PostoServiceImpl implements PostoService {
 
     @Override
     public void updatePosto(PostoDto postoDto) {
+        postoDto.setNome(postoDto.getNome().toUpperCase());
+        postoDto.setCidade(postoDto.getCidade().toUpperCase());
         postoRepository.save(modelMapper.map(postoDto, Posto.class));
     }
 

@@ -29,14 +29,14 @@
       <!-- Campo Descrição -->
       <div class="mb-3">
         <label for="descricao" class="form-label">Descrição</label>
-        <input type="text" class="form-control" id="descricao" th:field="*{descricao}" required>
+        <input type="text" class="form-control" id="descricao" th:field="*{descricao}" placeholder="SÃO PAULO/SP → CAMPINAS/SP" required>
       </div>
 
       <!-- Campo Cliente (Select) -->
       <div class="mb-3">
         <label for="clienteId" class="form-label">Cliente</label>
         <select class="form-select" id="clienteId" th:field="*{clienteId}" required>
-          <option value="">Selecione um cliente</option>
+          <option value="">SELECIONE UM CLIENTE</option>
           <option th:each="cliente : ${clientes}"
                   th:value="${cliente.id}"
                   th:text="${cliente.nome}">

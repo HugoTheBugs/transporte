@@ -60,11 +60,11 @@
                 <div class="mb-3">
                     <label for="categoria" class="form-label">Categoria</label>
                     <select class="form-select" id="categoria" th:field="*{categoria}" required>
-                        <option value="">Selecione a categoria</option>
-                        <option value="Micro-ônibus">Micro-ônibus</option>
-                        <option value="Ônibus">Ônibus</option>
-                        <option value="Van">Van</option>
-                        <option value="Veículo de apoio">Veículo de apoio</option>
+                        <option value="">SELECIONE A CATEGORIA</option>
+                        <option value="MICRO-ÔNIBUS">MICRO-ÔNIBUS</option>
+                        <option value="ÔNIBUS">ÔNIBUS</option>
+                        <option value="VAN">VAN</option>
+                        <option value="VEÍCULO DE APOIO">VEÍCULO DE APOIO</option>
                     </select>
                 </div>
 
@@ -72,9 +72,9 @@
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-select" id="status" th:field="*{status}" required>
-                        <option value="">Selecione o status</option>
-                        <option value="Ativo">Ativo</option>
-                        <option value="Inativo">Inativo</option>
+                        <option value="">SELECIONE O STATUS</option>
+                        <option value="ATIVO">ATIVO</option>
+                        <option value="INATIVO">INATIVO</option>
                     </select>
                 </div>
 
@@ -82,7 +82,7 @@
                 <div class="mb-3">
                     <label for="marcaId" class="form-label">Marca</label>
                     <select class="form-select" id="marcaId" th:field="*{marcaId}" required>
-                        <option value="">Selecione uma marca</option>
+                        <option value="">SELECIONE UMA MARCA</option>
                         <option th:each="marca : ${marcas}"
                                 th:value="${marca.id}"
                                 th:text="${marca.nome}"
@@ -95,7 +95,7 @@
                 <div class="mb-3">
                     <label for="combustivelId" class="form-label">Combustível</label>
                     <select class="form-select" id="combustivelId" th:field="*{combustivelId}" required>
-                        <option value="">Selecione um combustível</option>
+                        <option value="">SELECIONE UM COMBUSTÍVEL</option>
                         <option th:each="combustivel : ${combustiveis}"
                                 th:value="${combustivel.id}"
                                 th:text="${combustivel.nome}"

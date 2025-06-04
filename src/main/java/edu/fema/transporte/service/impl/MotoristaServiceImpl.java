@@ -24,6 +24,7 @@ public class MotoristaServiceImpl implements MotoristaService {
 
     @Override
     public void createMotorista(MotoristaDto motoristaDto) {
+        motoristaDto.setNome(motoristaDto.getNome().toUpperCase());
         Motorista motorista = modelMapper.map(motoristaDto, Motorista.class);
         motoristaRepository.save(motorista);
 
@@ -38,6 +39,7 @@ public class MotoristaServiceImpl implements MotoristaService {
 
     @Override
     public void updateMotorista(MotoristaDto motoristaDto) {
+        motoristaDto.setNome(motoristaDto.getNome().toUpperCase());
         motoristaRepository.save(modelMapper.map(motoristaDto, Motorista.class));
     }
 
