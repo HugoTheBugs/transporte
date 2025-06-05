@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Power BI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .iframe-container {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<div th:insert="~{common/header :: header}"></div>
+
+<!-- Conteúdo principal ocupando o restante da tela -->
+<div class="iframe-container">
+    <iframe src="https://app.powerbi.com/reportEmbed?reportId=aed1c11c-7a7a-48c6-b2b1-55f320178f53&autoAuth=true&ctid=f0db059c-8ee1-4a18-a24c-fc3029e8e7e8" allowFullScreen="true"></iframe>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
