@@ -5,10 +5,15 @@ import edu.fema.transporte.entity.*;
 import edu.fema.transporte.repository.*;
 import edu.fema.transporte.service.AbastecimentoService;
 import lombok.AllArgsConstructor;
+import jakarta.persistence.criteria.Predicate;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -153,4 +158,43 @@ public class AbastecimentoServiceImpl implements AbastecimentoService {
         dto.setCombustivelNome(abastecimento.getCombustivel().getNome());
         return dto;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<AbastecimentoDto> getAllAbastecimentos(Pageable pageable) {
+        return abastecimentoRepository.findAll(pageable)
+                .map(this::convertToDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<AbastecimentoDto> buscarComFiltros(Date dataInicio, Date dataFim, Long veiculoId, Long motoristaId, Long postoId, Pageable pageable) {
+        return abastecimentoRepository.findAll((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (dataInicio != null) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("data"), dataInicio));
+            }
+
+            if (dataFim != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("data"), dataFim));
+            }
+
+            if (veiculoId != null) {
+                predicates.add(cb.equal(root.get("veiculo").get("id"), veiculoId));
+            }
+
+            if (motoristaId != null) {
+                predicates.add(cb.equal(root.get("motorista").get("id"), motoristaId));
+            }
+
+            if (postoId != null) {
+                predicates.add(cb.equal(root.get("posto").get("id"), postoId));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        }, pageable).map(this::convertToDto);
+    }
+
+
 }

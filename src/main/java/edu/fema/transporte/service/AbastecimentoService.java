@@ -1,6 +1,9 @@
 package edu.fema.transporte.service;
 import edu.fema.transporte.dto.AbastecimentoDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 public interface AbastecimentoService {
@@ -22,4 +25,9 @@ public interface AbastecimentoService {
     AbastecimentoDto updateAbastecimento(Long id, AbastecimentoDto abastecimentoDto) throws RuntimeException;
 
     void deleteAbastecimento(Long id) throws RuntimeException;
+
+    Page<AbastecimentoDto> getAllAbastecimentos(Pageable pageable);
+
+    Page<AbastecimentoDto> buscarComFiltros(Date dataInicio, Date dataFim, Long veiculoId, Long motoristaId, Long postoId, Pageable pageable);
+
 }
