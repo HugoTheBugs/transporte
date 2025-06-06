@@ -2,13 +2,98 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Início - Sistema de Transporte Rural</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .hero {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1579165466930-d2b3a83c8c5b?auto=format&fit=crop&w=1400&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 80px 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* sobreposição escura */
+            z-index: 0;
+        }
+
+        .hero h1,
+        .hero p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+
 </head>
 <body>
+
 <div th:insert="~{common/header :: header}"></div>
-<div class="container mt-5">
+
+<div class="container mt-4">
+    <div class="hero text-center">
+        <h1>Bem-vindo ao Sistema de Transporte Rural</h1>
+        <p>Gerencie motoristas, veículos, itinerários, abastecimentos e muito mais.</p>
+    </div>
+
+    <div class="row mt-5 text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-truck fs-1 text-success"></i>
+                    <h5 class="card-title mt-3">Veículos</h5>
+                    <p class="card-text">Cadastre e acompanhe os veículos utilizados nas rotas rurais.</p>
+                    <a th:href="@{/veiculos}" class="btn btn-outline-success">Ver veículos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-geo-alt-fill fs-1 text-primary"></i>
+                    <h5 class="card-title mt-3">Itinerários</h5>
+                    <p class="card-text">Gerencie os percursos realizados no atendimento às comunidades.</p>
+                    <a th:href="@{/itinerarios}" class="btn btn-outline-primary">Ver itinerários</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-fuel-pump-fill fs-1 text-warning"></i>
+                    <h5 class="card-title mt-3">Abastecimentos</h5>
+                    <p class="card-text">Controle o consumo de combustível dos veículos da frota.</p>
+                    <a th:href="@{/abastecimentos}" class="btn btn-outline-warning">Ver abastecimentos</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

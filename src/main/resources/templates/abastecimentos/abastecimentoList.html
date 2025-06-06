@@ -38,11 +38,13 @@
         <form class="row g-3 mb-4" method="get" th:action="@{/abastecimentos}">
             <div class="col-md-3">
                 <label for="dataInicio" class="form-label">Data Início</label>
-                <input type="date" class="form-control" id="dataInicio" name="dataInicio" th:value="${dataInicio}">
+                <input type="date" class="form-control" id="dataInicio" name="dataInicio"
+                       th:value="${dataInicio != null} ? ${#dates.format(dataInicio, 'yyyy-MM-dd')} : ''">
             </div>
             <div class="col-md-3">
                 <label for="dataFim" class="form-label">Data Fim</label>
-                <input type="date" class="form-control" id="dataFim" name="dataFim" th:value="${dataFim}">
+                <input type="date" class="form-control" id="dataFim" name="dataFim"
+                       th:value="${dataFim != null} ? ${#dates.format(dataFim, 'yyyy-MM-dd')} : ''">
             </div>
             <div class="col-md-3">
                 <label for="veiculoId" class="form-label">Veículo</label>
@@ -110,7 +112,7 @@
             <tbody>
             <tr th:each="abastecimento, stat : ${abastecimentos.content}">
 
-            <td th:text="${stat.count}"></td>
+                <td th:text="${stat.count}"></td>
                 <td th:text="${abastecimento.data}"></td>
                 <td th:text="${abastecimento.veiculoPlaca}"></td>
                 <td th:text="${abastecimento.motoristaNome}"></td>
@@ -133,7 +135,7 @@
             </tr>
             </tbody>
         </table>
-
+2
 
     </div>
 </div>

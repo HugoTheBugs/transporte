@@ -7,11 +7,16 @@ import edu.fema.transporte.repository.MotoristaRepository;
 import edu.fema.transporte.repository.MovimentacaoRepository;
 import edu.fema.transporte.repository.VeiculoRepository;
 import edu.fema.transporte.service.MovimentacaoService;
+import jakarta.persistence.criteria.Predicate;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -131,5 +136,42 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
         dto.setMotoristaNome(movimentacao.getMotorista().getNome());
         dto.setItinerarioDescricao(movimentacao.getItinerario().getDescricao());
         return dto;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<MovimentacaoDto> getAllMovimentacoes(Pageable pageable) {
+        return movimentacaoRepository.findAll(pageable)
+                .map(this::convertToDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<MovimentacaoDto> buscarComFiltros(Date dataInicio, Date dataFim, Long veiculoId, Long motoristaId, Long itinerarioId, Pageable pageable) {
+        return movimentacaoRepository.findAll((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (dataInicio != null) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("data"), dataInicio));
+            }
+
+            if (dataFim != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("data"), dataFim));
+            }
+
+            if (veiculoId != null) {
+                predicates.add(cb.equal(root.get("veiculo").get("id"), veiculoId));
+            }
+
+            if (motoristaId != null) {
+                predicates.add(cb.equal(root.get("motorista").get("id"), motoristaId));
+            }
+
+            if (itinerarioId != null) {
+                predicates.add(cb.equal(root.get("itinerario").get("id"), itinerarioId));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        }, pageable).map(this::convertToDto);
     }
 }

@@ -5,11 +5,14 @@
   <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
-<header class="bg-light">
+<header class="bg-light shadow-sm mb-4">
   <nav class="navbar navbar-expand-lg navbar-light container">
+    <a class="navbar-brand fw-bold me-4" th:href="@{/}">Transporte Rural</a>
     <div class="navbar-nav me-auto">
+      <a class="nav-link" th:href="@{/}">Início</a>
+
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Tabelas
         </a>
         <ul class="dropdown-menu">
@@ -19,8 +22,9 @@
           <li><a class="dropdown-item" th:href="@{/createPosto}">Posto</a></li>
         </ul>
       </div>
+
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Estruturas
         </a>
         <ul class="dropdown-menu">
@@ -29,8 +33,9 @@
           <li><a class="dropdown-item" th:href="@{/veiculos/create}">Veículo</a></li>
         </ul>
       </div>
+
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Lançamentos
         </a>
         <ul class="dropdown-menu">
@@ -38,8 +43,9 @@
           <li><a class="dropdown-item" th:href="@{/movimentacoes/create}">Movimentação</a></li>
         </ul>
       </div>
+
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Consultas
         </a>
         <ul class="dropdown-menu">
@@ -54,11 +60,12 @@
           <li><a class="dropdown-item" th:href="@{/veiculos}">Veículos</a></li>
         </ul>
       </div>
-      <a class="nav-link" th:href="@{/relatorios}">Relatórios</a>
+
       <a class="nav-link" th:href="@{/pbi}">Analytics</a>
     </div>
   </nav>
 </header>
+
 <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

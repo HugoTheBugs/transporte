@@ -1,12 +1,19 @@
 package edu.fema.transporte.controller;
 
+import edu.fema.transporte.dto.AbastecimentoDto;
 import edu.fema.transporte.dto.MovimentacaoDto;
 import edu.fema.transporte.service.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,9 +27,23 @@ public class MovimentacaoController {
     private final ItinerarioService itinerarioService;
 
     @GetMapping
-    public String getAllMovimentacoes(Model model) {
-        List<MovimentacaoDto> movimentacoes = movimentacaoService.getAllMovimentacoes();
+    public String getAllMovimentacoes(Model model,
+                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataInicio,
+                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataFim,
+                                      @RequestParam(required = false) Long veiculoId,
+                                      @RequestParam(required = false) Long motoristaId,
+                                      @RequestParam(required = false) Long itinerarioId,
+                                      @PageableDefault(size = 20, sort = "data", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<MovimentacaoDto> movimentacoes = movimentacaoService.buscarComFiltros(dataInicio, dataFim, veiculoId, motoristaId, itinerarioId, pageable);
+
         model.addAttribute("movimentacoes", movimentacoes);
+        model.addAttribute("dataInicio", dataInicio);
+        model.addAttribute("dataFim", dataFim);
+        model.addAttribute("veiculoId", veiculoId);
+        model.addAttribute("motoristaId", motoristaId);
+        model.addAttribute("itinerarioId", itinerarioId);
+        carregarDadosRelacionados(model);
         return "movimentacoes/movimentacaoList";
     }
 
